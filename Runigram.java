@@ -12,7 +12,7 @@ public class Runigram {
 
 		// Tests the reading and printing of an image:
 		Color[][] tinypic = read("tinypic.ppm");
-		print(scaled(tinypic, 2, 2));
+		print(scaled(tinypic, 3, 5));
 
 		// Creates an image which will be the result of various
 		// image processing operations:
@@ -143,10 +143,18 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
+		int imageWidth = image[0].length;
+		int imageHeight = image.length;
+
 		Color[][] scaledImg = new Color[height][width];
-		for (int i = 0; i < scaledImg.length; i++) {
-			for (int j = 0; j < scaledImg[0].length; j++) {
-				scaledImg[i][j] = image[i * (image.length / height)][j * (image[0].length / width)];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int scaleH = i * imageHeight / height;
+				int scaleW = j * imageWidth / width;
+				int r = image[scaleH][scaleW].getRed();
+				int g = image[scaleH][scaleW].getGreen();
+				int b = image[scaleH][scaleW].getBlue();
+				scaledImg[i][j] = new Color(r, g, b);
 			}
 		}
 		return scaledImg;
