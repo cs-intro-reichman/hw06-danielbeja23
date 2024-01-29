@@ -12,7 +12,7 @@ public class Runigram {
 
 		// Tests the reading and printing of an image:
 		Color[][] tinypic = read("tinypic.ppm");
-		print(tinypic);
+		print(grayScaled(tinypic));
 
 		// Creates an image which will be the result of various
 		// image processing operations:
@@ -119,16 +119,22 @@ public class Runigram {
 	// consisting
 	// the three values r = lum, g = lum, b = lum.
 	public static Color luminance(Color pixel) {
-		//// Replace the following statement with your code
-		return null;
+		Color convToGrey = new Color((int) (0.299 * pixel.getRed()), (int) (0.587 * pixel.getGreen()),
+				((int) 0.114 * pixel.getBlue()));
+		return convToGrey;
 	}
 
 	/**
 	 * Returns an image which is the grayscaled version of the given image.
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] convImg = new Color[image.length][image[0].length];
+		for (int i = 0; i < image.length; i++) {
+			for (int j = 0; j < image[0].length; j++) {
+				convImg[i][j] = luminance(image[i][j]);
+			}
+		}
+		return convImg;
 	}
 
 	/**
