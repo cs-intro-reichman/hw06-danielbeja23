@@ -12,7 +12,7 @@ public class Runigram {
 
 		// Tests the reading and printing of an image:
 		Color[][] tinypic = read("tinypic.ppm");
-		print(scaled(tinypic, 3, 5));
+		print(tinypic);
 
 		// Creates an image which will be the result of various
 		// image processing operations:
@@ -22,7 +22,7 @@ public class Runigram {
 		imageOut = flippedVertically(tinypic);
 		System.out.println();
 		print(imageOut);
-		print(blend(new Color(100, 40, 100), new Color(200, 20, 40), 0.25));
+		print(blend(imageOut,tinypic,0.3));
 
 		//// Write here whatever code you need in order to test your work.
 		//// You can reuse / overide the contents of the imageOut array.
@@ -186,8 +186,13 @@ public class Runigram {
 	 * The two images must have the same dimensions.
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] blendCol = new Color[image1.length][image1[0].length];
+		for(int i = 0;i < blendCol.length; i++){
+			for(int j = 0;j< blendCol[0].length;j++){
+			blendCol[i][j] = blend(image1[i][j],image2[i][j], alpha);
+			}
+		}
+		return blendCol;
 	}
 
 	/**
