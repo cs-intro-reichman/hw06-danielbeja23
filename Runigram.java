@@ -202,9 +202,9 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		target = scaled(target, source.length, source[0].length);
+		target = scaled(target, source[0].length, source.length);
 		for(int i = 0; i < n;i++){
-			blend(source, target,((n - i)/n));
+			target = blend(target, source,(double)((n - i)/(double)n));
 			display(target);
 			StdDraw.pause(500);
 		}
