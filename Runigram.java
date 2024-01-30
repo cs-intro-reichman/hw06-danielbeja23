@@ -22,6 +22,7 @@ public class Runigram {
 		imageOut = flippedVertically(tinypic);
 		System.out.println();
 		print(imageOut);
+		print(blend(new Color(100, 40, 100), new Color(200, 20, 40), 0.25));
 
 		//// Write here whatever code you need in order to test your work.
 		//// You can reuse / overide the contents of the imageOut array.
@@ -169,8 +170,11 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		int r = (int)(c1.getRed()*alpha + c2.getRed()*(1 - alpha));
+		int g = (int)(c1.getGreen()*alpha + c2.getGreen()*(1 - alpha));
+		int b = (int)(c1.getBlue()*alpha + c2.getBlue()*(1 - alpha));
+		Color newCol = new Color(r,g,b);
+		return newCol;
 	}
 
 	/**
